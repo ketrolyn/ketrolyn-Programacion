@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Nuestro primer ejercicio consistira en hacer un juego de adivinar la ´
+ *suma de dos numeros generados aleatoriamente.
  */
 package tema8p1eje1;
 
