@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import c9practica_uno.Mae;
+
 /**
  *
  * @author Ketrolyn
@@ -36,7 +38,7 @@ public class Opciones extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfOpcion = new javax.swing.JTextField();
 
         jMenu1.setText("jMenu1");
 
@@ -58,12 +60,12 @@ public class Opciones extends javax.swing.JFrame {
 
         jLabel6.setText("Opcion Elegida : ");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfOpcion.setBackground(new java.awt.Color(255, 255, 255));
+        tfOpcion.setForeground(new java.awt.Color(0, 0, 0));
+        tfOpcion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfOpcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfOpcionActionPerformed(evt);
             }
         });
 
@@ -85,7 +87,7 @@ public class Opciones extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
@@ -104,16 +106,45 @@ public class Opciones extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void tfOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfOpcionActionPerformed
+        try{
+            // Tem algo escrito nesse campo?(comprovo)
+            if(tfOpcion.getText().isEmpty())
+                throw new Exception();
+            // Caso nao esteja vazio, entao colocamos um switch 
+            //poruqe será um dos casos
+            switch(Integer.parseInt(tfOpcion.getText())){
+                case 1:
+                    Mae.alta();
+                    tfOpcion.setText("");
+                    break;
+                case 2:
+                    String nombre= javax.swing.JOptionPane.showInputDialog("Introduz el nombre e la persona");
+                    validarNombre(nombre);//este metodo ja criei antes ou ainda estou por criar?
+                    Mae.consultarP(nombre);
+                    tfOpcion.setText("");
+                    break;
+                case 3:
+                    Mae.obtenerDatos();//este metodo ja criei antes ou ainda estou por criar?
+                    tfOpcion.setText("");
+                    break;
+                case 4:
+                    Mae.terminar();
+                    break;
+                default:
+                        throw new Exception("Opcion no válida");
+            }
+        }catch(Exception gnr){
+        javax.swing.JOptionPane.showMessageDialog(this, gnr.getMessage());
+        }
+    }//GEN-LAST:event_tfOpcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +191,6 @@ public class Opciones extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField tfOpcion;
     // End of variables declaration//GEN-END:variables
 }
